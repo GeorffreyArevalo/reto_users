@@ -3,6 +3,7 @@ package com.backend.core.users.domain.usecases;
 import java.util.List;
 
 import com.backend.core.users.domain.api.UserServicePort;
+import com.backend.core.users.domain.exception.BadRequestException;
 import com.backend.core.users.domain.exception.DataNotFoundException;
 import com.backend.core.users.domain.models.RoleModel;
 import com.backend.core.users.domain.models.UserModel;
@@ -21,6 +22,10 @@ public class UserUseCases implements UserServicePort{
 
     @Override
     public void saveUser(UserModel user) {
+        
+        userPersistencePort.findByEmail(user.getEmail()).ifPresent((userFound) -> {
+            throw new BadRequestException(400,  String.format("El usuario con email %s ya existe.", userFound.getEmail()));
+        });
         userPersistencePort.saveUser(user);
     }
 

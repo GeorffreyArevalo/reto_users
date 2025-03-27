@@ -28,7 +28,11 @@ public class RolePersistenceAdapter implements RolePersistencePort {
 
     @Override
     public Optional<RoleModel> findByName(String name) {
-        return Optional.of(roleEntityMapper.entityToModel(roleRepository.findByName(name).orElse(null)));
+        Optional<RoleEntity> entity = roleRepository.findByName(name);
+        if( entity.isPresent() ) {
+            return Optional.of( roleEntityMapper.entityToModel(entity.get()) );
+        }
+        return Optional.empty();
     }
     
 }

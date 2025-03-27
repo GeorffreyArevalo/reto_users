@@ -27,7 +27,7 @@ public class UserEntity {
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     private Long id;
 
-    @NotEmpty
+    @NotEmpty( message = "es requerido." )
     private String name;
     
     @NotEmpty
@@ -39,8 +39,8 @@ public class UserEntity {
     @NotEmpty
     private String phone;
     
-    @NotEmpty
-    @Email
+    @NotEmpty( message = "es requerido." )
+    @Email( message = "debe ser un email." )
     @Column( unique = true )
     private String email;
     

@@ -24,6 +24,7 @@ public class UserHandlerImpl implements UserHandler{
 
     @Override
     public void saveUser(CreateUserRequest userRequest) {
+        userRequest.validate();
         RoleModel role = roleServicePort.findByName(userRequest.getRoleName());
         UserModel user = userMapper.createRequestToModel(userRequest);
         user.setRole(role);

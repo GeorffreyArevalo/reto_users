@@ -22,8 +22,9 @@ public class UserController {
     
     private final UserHandler userHandler;
 
-    @PostMapping
+    @PostMapping("/create/owner")
     public ResponseEntity<Void> create(@RequestBody CreateUserRequest createUserRequest) {
+        createUserRequest.setRoleName("ROLE_OWNER");
         userHandler.saveUser(createUserRequest);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
