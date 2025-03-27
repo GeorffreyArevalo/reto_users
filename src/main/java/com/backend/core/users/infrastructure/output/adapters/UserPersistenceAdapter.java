@@ -40,5 +40,15 @@ public class UserPersistenceAdapter implements UserPersistencePort{
     public List<UserModel> findByRole(Long roleId) {
         return userEntityMapper.listEntityToModel(userRepository.findByRoleId(roleId));
     }
+
+    @Override
+    public Optional<UserModel> findById(Long id) {
+        Optional<UserEntity> user = userRepository.findById(id);
+        if( user.isPresent() ) {
+            return Optional.of(userEntityMapper.entityToModel(user.get()));
+        }
+        return Optional.empty();
+
+    }
     
 }

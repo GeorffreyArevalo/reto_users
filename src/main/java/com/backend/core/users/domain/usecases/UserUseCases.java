@@ -40,5 +40,10 @@ public class UserUseCases implements UserServicePort{
         RoleModel roleModel = rolePersistencePort.findByName(role).orElseThrow(() -> new DataNotFoundException(404, "El role enviado no existe."));
         return userPersistencePort.findByRole(roleModel.getId());
     }
+
+    @Override
+    public UserModel findById(Long id) {
+        return userPersistencePort.findById(id).orElseThrow( () -> new DataNotFoundException(404, String.format("El usuario con id %s no existe.", id)) );
+    }
     
 }

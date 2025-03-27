@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.backend.core.users.application.dtos.users.CreateUserRequest;
+import com.backend.core.users.application.dtos.users.UserResponse;
 import com.backend.core.users.application.mappers.UserMapper;
 import com.backend.core.users.domain.api.RoleServicePort;
 import com.backend.core.users.domain.api.UserServicePort;
@@ -29,6 +30,12 @@ public class UserHandlerImpl implements UserHandler{
         UserModel user = userMapper.createRequestToModel(userRequest);
         user.setRole(role);
         userServicePort.saveUser(user);
+    }
+
+
+    @Override
+    public UserResponse findById(Long id) {
+        return userMapper.modelToResponse(userServicePort.findById(id));
     }
     
 }

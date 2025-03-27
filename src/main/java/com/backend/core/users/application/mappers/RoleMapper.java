@@ -18,5 +18,7 @@ public interface RoleMapper {
 
     RoleResponse modelToResponse( RoleModel roleModel );
 
+    RoleModel responseToModel( RoleResponse rokResponse );
+
 
 }

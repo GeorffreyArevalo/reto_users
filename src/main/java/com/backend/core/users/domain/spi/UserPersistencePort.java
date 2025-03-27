@@ -11,6 +11,8 @@ public interface UserPersistencePort {
 
     Optional<UserModel> findByEmail( String email );
 
+    Optional<UserModel> findById( Long id );
+
     List<UserModel> findByRole( Long idRole );
 
 }

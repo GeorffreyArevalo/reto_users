@@ -10,6 +10,8 @@ public interface UserServicePort {
 
     UserModel findByEmail( String email );
 
+    UserModel findById( Long id );
+
     List<UserModel> findByRole( String role );
     
 }
