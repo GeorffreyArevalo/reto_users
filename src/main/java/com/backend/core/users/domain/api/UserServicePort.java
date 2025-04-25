@@ -14,4 +14,6 @@ public interface UserServicePort {
 
     List<UserModel> findByRole( String role );
     
+    UserModel login( String email, String password );
+
 }

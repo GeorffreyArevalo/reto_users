@@ -37,6 +37,8 @@ public class UserController {
     public ResponseEntity<UserResponse> findById(@PathVariable(name = "id") Long id) {
         return ResponseEntity.ok( userHandler.findById(id) );
     }
+
+    
     
 
 }

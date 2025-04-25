@@ -1,5 +1,7 @@
 server:
-  port: 8090
+  servlet:
+    context-path: /users
+  port: 0
 
 spring:
   application:
@@ -24,3 +26,16 @@ logging:
     org:
       hibernate:
         SQL: debug
+
+
+eureka:
+  instance:
+    instance-id: "${spring.application.name}:${random.value}"
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+# Variable de entorno
+application:
+  auth:
+    secret: 0719f088cd49a3f9d1dac2386cbf91d2cd5386776a8577d9b43c0f8ca7f3e308

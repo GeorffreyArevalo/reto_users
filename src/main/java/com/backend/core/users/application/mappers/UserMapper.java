@@ -6,6 +6,7 @@ import org.mapstruct.Mappings;
 import org.mapstruct.ReportingPolicy;
 
 import com.backend.core.users.application.dtos.users.CreateUserRequest;
+import com.backend.core.users.application.dtos.users.LoginResponse;
 import com.backend.core.users.application.dtos.users.UserResponse;
 import com.backend.core.users.domain.models.UserModel;
 
@@ -24,5 +25,12 @@ public interface UserMapper {
         @Mapping( target = "roleName", source = "userModel.role.name" )
     )
     UserResponse modelToResponse( UserModel userModel );
+    
+    @Mappings({
+        @Mapping( target = "roleName", source = "userModel.role.name" ),
+        @Mapping( target = "token", source = "token" )
+    }
+    )
+    LoginResponse userToLoginResponse( UserModel userModel, String token );
 
 }
